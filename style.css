@@ -1,0 +1,216 @@
+/* Full CSS with Responsive 3-Line Menu */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1a1a1a;
+    padding: 10px 20px;
+    height: 80px;
+    border-bottom: 3px solid #ffcc00;
+}
+
+/* Left section with logo and company name */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 90px;
+    height: auto;
+}
+
+.company-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+/* Navigation Bar */
+nav {
+    width: 100%;
+    background: linear-gradient(to right, #333, #555);
+    padding: 8px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #222;
+    min-width: 160px;
+    border-radius: 5px;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 130px);
+    background: #111;
+    padding: 20px;
+    gap: 30px;
+}
+
+/* Left Frame */
+.left-frame {
+    width: 30%;
+    padding: 30px;
+    background: #1e1e1e;
+    color: white;
+    border-right: 2px solid white;
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.left-frame ul {
+    list-style: none;
+}
+
+.left-frame ul li {
+    margin-bottom: 20px;
+}
+
+.left-frame ul li a {
+    display: block;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #222, #444);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.left-frame ul li a:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff5733);
+    color: #111;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+}
+
+/* Right Frame */
+.right-frame {
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a2a2a;
+    height: 100%;
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.right-frame img {
+    width: 95%;
+    height: auto;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.right-frame img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+    }
+
+    .left-frame {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .right-frame {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .right-frame img {
+        width: 100%;
+    }
+
+    /* Responsive Navigation Menu - EXACTLY THREE LINES */
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        gap: 10px;
+    }
+
+    nav ul li {
+        width: 30%; /* Ensures three items per row */
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+}

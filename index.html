@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercars Showcase</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .car-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s ease;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .prev:hover, .next:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Light/Dark Toggle Button */
+        .toggle-btn {
+            cursor: pointer;
+            padding: 10px 15px;
+            background: #ffcc00;
+            color: #111;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #ff9900;
+        }
+
+        /* Light Mode Styles */
+        .light-mode {
+            background: #f4f4f4;
+            color: #111;
+        }
+
+        .light-mode nav {
+            background: linear-gradient(to right, #ddd, #eee);
+        }
+
+        .light-mode .left-frame {
+            background: #fff;
+            color: #111;
+            border-right: 2px solid #333;
+        }
+
+        .light-mode .right-frame {
+            background: #ddd;
+            border-left: 3px solid rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .car-image {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode header {
+            background: #eee;
+            border-bottom: 3px solid #ff9900;
+        }
+
+        .light-mode .company-name {
+            color: #ff9900;
+        }
+
+        .light-mode nav ul li a {
+            color: black;
+        }
+
+        .light-mode .dropdown-menu {
+            background: #ddd;
+        }
+
+        .light-mode .left-frame ul li a {
+            color: black;
+            border: 2px solid rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ccc, #eee);
+        }
+
+        .light-mode .left-frame ul li a:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff5733);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="hyderlogo4.png" alt="Supercars Logo" class="logo">
+            <h1 class="company-name">Supercars Hub</h1>
+        </div>
+        <button class="toggle-btn" onclick="toggleMode()">Light/Dark Mode</button>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">HOME</a></li>
+            <li class="dropdown">
+                <a href="#">CARS ▼</a>
+                <div class="dropdown-menu">
+                    <a href="https://www.bugatti.com/" target="_blank">Luxury</a>
+                    <a href="https://www.ferrari.com/" target="_blank">Sports</a>
+                    <a href="https://www.lamborghini.com/" target="_blank">SUV</a>
+                    <a href="https://www.tesla.com/" target="_blank">Electric</a>
+                </div>
+            </li>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">GALLERY</a></li>
+            <li><a href="#">REVIEWS</a></li>
+            <li><a href="signup.html" class="login-btn">SIGN UP</a></li>
+        </ul>
+    </nav>
+    <div class="main-container">
+        <div class="left-frame">
+            <h2>🚘 Choose a Car</h2>
+            <ul>
+                <li><a href="#" onclick="showCar('bugatti')">Bugatti</a></li>
+                <li><a href="#" onclick="showCar('ferrari')">Ferrari</a></li>
+                <li><a href="#" onclick="showCar('lamborghini')">Lamborghini</a></li>
+                <li><a href="#" onclick="showCar('tesla')">Porsche</a></li>
+                <li><a href="#" onclick="showCar('porsche')">Tesla</a></li>
+
+                <li><a href="#" onclick="showCar('mclaren')">McLaren</a></li>
+                <li><a href="#" onclick="showCar('koenigsegg')">Koenigsegg</a></li>
+                <li><a href="#" onclick="showCar('rollsroyce')">Rolls Royce</a></li>
+                <li><a href="#" onclick="showCar('astonmartin')">Aston Martin</a></li>
+                <li><a href="#" onclick="showCar('pagani')">Pagani</a></li>
+
+            </ul>
+        </div>
+        <div class="right-frame">
+            <div class="slideshow-container" id="car-slideshow">
+                <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+                <img id="car-image" class="car-image" src="cars.jpg" alt="Car Display">
+                <span class="next" onclick="changeSlide(1)">&#10095;</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let carImages = {
+            'bugatti': ['bugati1.jpg', 'bugati2.jpg', 'bugati3.jpg'],
+            'ferrari': ['ferari1.jpg', 'ferari2.jpg', 'ferari3.jpg'],
+            'lamborghini': ['lambo.jpg', 'lambo1.jpg', 'lambo3.jpg'],
+            'tesla': ['porshe.png', 'porshe2.png', 'porshe3.png'],
+            'porsche': ['tesla.jpg', 'tesla2.jpg', 'tesla4.jpg'],
+
+            'mclaren': ['mclaren1.jpg', 'mclaren2.jpg', 'mclaren3.jpg'],
+            'koenigsegg': ['koenigsegg1.jpg', 'koenigsegg2.jpg', 'koenigsegg3.jpg'],
+            'rollsroyce': ['rolls1.jpg', 'rolls2.jpg', 'rolls3.jpg'],
+            'astonmartin': ['aston1.jpg', 'aston2.jpg', 'aston3.jpg'],
+            'pagani': ['sjpg', 'pagani2.jpg', 'pagani3.jpg']
+
+        };
+        
+        let currentCar = 'bugatti';
+        let currentIndex = 0;
+        let slideInterval;
+
+        function showCar(car) {
+            currentCar = car;
+            currentIndex = 0;
+            document.getElementById('car-image').src = carImages[car][0];
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 3000);
+        }
+
+        function changeSlide(direction) {
+            currentIndex = (currentIndex + direction + carImages[currentCar].length) % carImages[currentCar].length;
+            document.getElementById('car-image').src = carImages[currentCar][currentIndex];
+        }
+
+        // Toggle Light/Dark Mode
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Start default slideshow on load
+        window.onload = startSlideshow;
+    </script>
+</body>
+</html>
